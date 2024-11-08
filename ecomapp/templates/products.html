@@ -1,0 +1,59 @@
+{% extends "basic.html" %}
+{% block title %}Product Catalog{% endblock title %}
+{% block style %}
+<style>
+    .card {
+        margin-bottom: 20px;
+    }
+    .card-body {
+        padding: 1rem;
+    }
+    .card-title, .card-text {
+        margin-bottom: 0.5rem;
+    }
+</style>
+{% endblock style %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="fw-bold text-center">Buy Your Favorites!</h1>
+        </div>
+    </div>
+    <div class="row">
+
+        {% for category in categories %}
+
+        {% for podu in products %}
+          {% if podu.category.c_name ==  category.c_name %}
+          <h2 class="text-primary fw-bold">{{category.c_name}}:</h2>
+
+          {% endif %}
+        {% endfor %}
+          {% for prod in products %}
+          {% if prod.category.c_name == category.c_name %}
+          <!-- <h2 class="text-danger fw-bold">{{category.c_name}}:</h2> -->
+        
+          <div class="col-4">
+              <div class="card">
+                  <img src="/media/{{prod.image}}" class="card-img- img-fluid img-thumbnail" alt="...">
+                  <div class="card-body bg-dark text-light">
+                      <div class="card-title"><span class="fw-bold">Title:</span>{{prod.name}}</div>
+                      <div class="card-text"><span class="fw-bold">Descriptioin:</span>{{prod.description}}</div>
+                      <div class="card-text"><span class="fw-bold">Price:</span>{{prod.price}}</div>
+                      <div class="card-text"><span class="fw-bold">Published Date:</span>{{prod.uploaddate}}</div>
+                      <div class="card-text"><span class="fw-bold">Available Quantity:</span>{{prod.stk_available}}</div>
+                      <form action="" method="post">{% csrf_token %}
+                          <input type="hidden" value="{{prod.id}}" name="cartitem">
+                          <button type="submit" class="btn btn-primary text-center m-2">Add to cart!</button>
+                      </form>
+                      <a href="{% url 'checkout' prod.id %}" class="btn btn-primary text-center ">Checkout!</a>
+                  </div>
+              </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock body %}

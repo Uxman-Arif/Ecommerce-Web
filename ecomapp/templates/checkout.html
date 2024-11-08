@@ -1,0 +1,20 @@
+{% extends "basic.html" %}
+{% block style %}{% endblock style %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <h1 class="text-center fw-bold">Product Checkout!</h1><hr>
+        <div class="col-6">
+            <img class="w-100" src="/media/{{prodcts.image}}" alt="">
+        </div>
+        <div class="col-6">
+            <h1><span class="fw-bold">Title: </span>{{prodcts.name}}</h1>
+            <p><span class="fw-bold">Description: </span>{{prodcts.description}}</p>
+            <p><span class="fw-bold">Price: </span>{{prodcts.price}}</p>
+            <p><span class="fw-bold">Available Stock: </span>{{prodcts.stk_available}}</p>
+            <p><span class="fw-bold">Upload Date: </span>{{prodcts.uploaddate}}</p>
+            <a href="{% url 'products' %}" class="btn btn-primary w-100">Go back!</a>
+        </div>
+    </div>
+</div>
+{% endblock body %}

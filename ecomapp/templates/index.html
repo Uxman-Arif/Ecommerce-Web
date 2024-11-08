@@ -1,0 +1,73 @@
+{% extends "basic.html" %}
+{% block title %}
+  Home
+{% endblock title %}
+{% block style %}
+  <style>
+    .coverpic{
+        background: url('https://lh3.googleusercontent.com/uh6Izbyx_dKfnMD9snn-apNIcmg4yGd5vSgfXyvpkS3WVaDoLhti2kGngxoNVuxTkUhdWLj9yNww0YjUKUJhzGFRIw=s1280-w1280-h800') center no-repeat;
+        background-size: cover;
+        /* opacity: 0.8; */
+        padding: 100px 0px;
+        color: rgb(241, 229, 229);
+    }
+
+    .coverbtn1{
+        color: black;
+        background-color: white;
+        transition: all 0.5s 0.5s ease-in-out;
+        position: relative;
+        animation: moveRight 3s forwards;
+    }
+    
+
+@keyframes moveRight {
+    from {
+        transform: translateX(-10%); /* Start off-screen to the left */
+    }
+    to {
+        transform: translateX(10%); /* End off-screen to the right */
+    }
+}
+
+.coverbtn1:hover{
+        background-color: brown;
+    }
+
+.coverbtn2{
+    background-color: brown;
+    color: black;
+    transition: all 0.5s 0.5s ease-in-out;
+    animation: moveleft 3s forwards;
+}
+
+@keyframes moveleft {
+    from {
+        transform: translateX(0%); /* Start off-screen to the left */
+    }
+    to {
+        transform: translateX(20%); /* End off-screen to the right */
+    }
+}
+    
+    .coverbtn2:hover{
+        background-color: white;
+        color: black;
+    }
+  </style>
+{% endblock style %}
+{% block body %}
+<div class="container-fluid">
+    
+    <div class="row justify-content-cente coverpic">
+        <div class="col-md-7 offset-md-2  text-center">
+                <h3 class="text-center fw-bold">At My Store, we pride ourselves on providing a wide range of high-quality electrical products and solutions to meet your needs. Whether you're a DIY enthusiast, a professional electrician, or simply looking to upgrade your home with the latest technology, we have everything you need under one roof.</h3>
+                <a class="nav-link" href=""></a>  
+                <a class="nav-link" href="">All Products</a>  
+
+                <a href="{% url 'add_product' %}" class="btn coverbtn1 p-2 m-2">Add Products</a>
+                <a href="{% url 'products' %}" class="btn coverbtn2 p-2 m-2">All Products</a>
+            </div>
+    </div>
+</div>
+{% endblock body %}
